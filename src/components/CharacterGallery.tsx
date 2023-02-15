@@ -1,18 +1,18 @@
-import React from "react";
-
+import React, {ReactElement} from "react";
 import CharacterCard from "./CharacterCard";
-import {Character} from "../model/CharacterType";
+
 import "../css_components/Gallery.css";
+import "../App.css"
+import {Character} from "../model/CharacterType";
 
 type CharacterGalleryProps={
-
     characters:Character[]
 }
 
 export default function CharacterGallery(props:CharacterGalleryProps){
 
-    const fancyCards=props.characters.map(character=> <CharacterCard id={character.id} name={character.name} status={character.status} image={character.image} origin={character.origin}/>)
+    const fancyCard:ReactElement[]=props.characters.map((character)=> { return <CharacterCard character={character}/>})
 
-    return <div className={"character-gallery"}>{fancyCards}</div>
+    return <div className={"character-gallery"}>{fancyCard}</div>
 
 }

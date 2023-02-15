@@ -36,28 +36,6 @@ h1,h3{
   font-color:darkgreen;
 }
 
-p{
-  text-align: center;
-  font-size: small;
-  font-color:darkgreen;
-}
-
-
-.card{
-  width: 200px;
-  height: auto;
-  border-style: solid;
-  background-color: darkseagreen;
-  border-color: darkslategrey;
-  border-radius: 10px;
-  margin:1%
-
-}
-.card img{
-  width: 50%;
-  border-radius: 50%;
-}
-
 
 
 @keyframes App-logo-spin {

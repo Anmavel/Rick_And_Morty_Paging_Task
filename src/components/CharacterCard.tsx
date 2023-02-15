@@ -1,26 +1,33 @@
 import React from "react";
+import "../css_components/CharacterCard.css"
+import {Character} from "../model/CharacterType";
+
 
 type CharacterProp ={
-    id:number,
-    name:string,
-    status:string,
-    image:string,
-    origin:Origin
+    character: Character,
 }
 
+
 type Origin={
-    name:string
+    name:string,
+    url:string
 }
+
+type LocationC={
+    name:string,
+    url:string
+}
+
 
 
 export default function CharacterCard(props:CharacterProp){
     return (
             <>
                 <div className={"card"}>
-                    <h3>{props.name}</h3>
-                    <img src={props.image} height="130" width="124"/>
-                    <p>Id:{props.id}  Status: {props.status}</p>
-                    <p>Origin:{props.origin.name}</p>
+                    <h3>{props.character.name}</h3>
+                    <img src={props.character.image} height="130" width="124"/>
+                    <p>Id:{props.character.id}  Status: {props.character.status}</p>
+                    <p>Origin:{props.character.origin.name}</p>
                 </div>
             </>
     )
