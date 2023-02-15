@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Greetings from "./Greetings";
-import CharacterCard from "./CharacterCard";
-import {Character} from "./CharacterType";
-import CharacterGallery from "./CharacterGallery";
+import Greetings from "./components/Greetings";
+import CharacterCard from "./components/CharacterCard";
+import {Character} from "./model/CharacterType";
+import CharacterGallery from "./components/CharacterGallery";
 
 
 
@@ -13,7 +13,7 @@ function App() {
 
   const name2:string="Rick & Morty App"
   const names:string[]=["Lena", "Ana", "Roh", "Helen", "Edona"]
-  const characters:{results:Character[]} = require('./characters.json');
+  const characters:{results:Character[]} = require('./model/characters.json');
 
 
   return (
