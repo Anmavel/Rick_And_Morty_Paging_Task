@@ -1,0 +1,6 @@
+.character-gallery{
+    display:flex;
+    justify-content:center;
+    flex-flow: row wrap;
+    font-color:darkgreen;
+}
