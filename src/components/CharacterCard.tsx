@@ -7,19 +7,6 @@ type CharacterProp ={
     character: Character,
 }
 
-
-type Origin={
-    name:string,
-    url:string
-}
-
-type LocationC={
-    name:string,
-    url:string
-}
-
-
-
 export default function CharacterCard(props:CharacterProp){
     return (
             <>

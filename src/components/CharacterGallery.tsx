@@ -1,6 +1,5 @@
 import React, {ReactElement} from "react";
 import CharacterCard from "./CharacterCard";
-
 import "../css_components/Gallery.css";
 import "../App.css"
 import {Character} from "../model/CharacterType";
