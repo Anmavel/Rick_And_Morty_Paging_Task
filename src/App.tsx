@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Greetings from "./components/Greetings";
@@ -31,13 +31,15 @@ function App() {
         setCharacters(response.data.results);
         })
         .catch((error)=> { console.error(error)}
-        )
-  }
+        )}
+
+    useEffect(()=>{getCharacters()},[])
 
 
-  function handleSearchText(searchText:string){
-        setSearchText(searchText)
-    }
+    function handleSearchText(searchText:string){
+        setSearchText(searchText)}
+
+
     const filteredCharacters=characters.filter((character)=>
         character
             .name
@@ -59,11 +61,11 @@ function App() {
                 <h1>{tittle}</h1>
             </header>
 
-            {/*
-            <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
-            <p>Search for Character Card:</p>
-            <p><InputUser setText={handleText}/></p>
-            */}
+                    {/*
+                    <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
+                    <p>Search for Character Card:</p>
+                    <p><InputUser setText={handleText}/></p>
+                    */}
 
             <div>
                 <p>Search for characters</p>
@@ -72,20 +74,20 @@ function App() {
                 {<CharacterGallery characters={filteredCharacters}/>}
             </div>
 
-            <body>
+
+
             <div>
                 {/*<p>{<CharacterGallery characters={searchedCharacter}/>}</p>*/}
                 {/*<button onClick={search}>Search</button>*/}
-                {/*names.map(name=> <Greetings name={name}/>)*/}
+                {/*names.map(name=> <Greetings name={name}/>)
                 <div className={"character-gallery"}>
                     {<CharacterGallery characters={characters}/>}
-                </div>
+                </div>*/}
             </div>
-            </body>
 
-            <footer>
-                <p>By Ana</p>
-            </footer>
+
+
+            <footer><p>By Ana</p></footer>
 
 
         </div>
