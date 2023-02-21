@@ -19,22 +19,16 @@ export default function CharacterCardDetails(props:CharacterCardDetailsProps){
         return <div>ID is undefined</div>
     }
 
-   const foundCharacter: Character | undefined =props.characters.find((f) =>(f.id===parseInt(id)))
+   const foundCharacter: Character | undefined = props.characters.find((f) =>(f.id === parseInt(id)))
 
 
     return(
-
         <div className={"card"}>
-            <h5>
-                {foundCharacter && foundCharacter.name}
-            </h5>
+            <h5>{foundCharacter?.name}</h5>
             <img src={foundCharacter?.image} height="130" width="124"/>
             <p>Id:{foundCharacter?.id}  Status: {foundCharacter?.status}</p>
             <p>Origin:{foundCharacter?.origin.name}</p>
             <p>{foundCharacter?.species}</p>
-
-
-
         </div>
     )
 }

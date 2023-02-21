@@ -9,53 +9,56 @@ import {Character} from "./model/CharacterType";
 import search from "./components/search";
 import axios from "axios";
 import SearchCharacter from "./components/SearchCharacter";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Link} from "react-router-dom";
 import CharacterCardDetails from "./components/CharacterCardDetails";
+import {EpisodeType} from "./model/EpisodeType";
+import EpisodesGallery from "./components/EpisodesGallery";
 
 
 
 function App() {
+  const tittle:string = "Rick & Morty Gallery App"
+  const names:string[] = ["Lena", "Ana", "Roh", "Helen", "Edona"]
 
-  const tittle:string="Rick & Morty Gallery App"
-  const names:string[]=["Lena", "Ana", "Roh", "Helen", "Edona"]
-  const [characters,setCharacters]=useState<Character[]>([]);
-        // const characters:{results:Character[]} = require('./model/characters.json');
-        //const[text,setText]=useState<string>("")
-    const[searchText,setSearchText]=useState<string>("")
+  const [characters,setCharacters] = useState<Character[]>([]);
+  const[searchText,setSearchText] = useState<string>("")
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
-        {/*function handleText(text:string){setText(text)}
-        const searchedCharacter=search(characters,text)
-        */}
-    const [pageNumber, setPageNumber] = useState<number>(1);
+  const [episodes, setEpisodes] = useState<EpisodeType[]>([])
 
   function getCharacters(){
     axios.get("https://rickandmortyapi.com/api/character?page=" + pageNumber)
-        .then ((response)=>{console.log(response)
-        setCharacters(response.data.results);
+        .then ((response) => { console.log(response)
+            setCharacters(response.data.results);
         })
-        .catch((error)=> { console.error(error)}
+        .catch((error)=> { console.error(error) }
         )
       setPageNumber(pageNumber+1)
     }
 
-    useEffect(()=>{getCharacters()},[])
+    function getEpisodes(){
+        axios.get("https://rickandmortyapi.com/api/episode")
+            .then((response)=>{console.log(response)
+                setEpisodes(response.data.results);
+            })
+            .catch((error)=>console.error(error))
+
+    }
+
+
+    useEffect(() => {
+        getCharacters()
+        getEpisodes()
+    },[])
 
 
     function handleSearchText(searchText:string){
         setSearchText(searchText)}
 
-
-    const filteredCharacters=characters.filter((character)=>
-        character
-            .name
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
-        ||
-        character
-            .status
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
+    const filteredCharacters=characters.filter((character) =>
+        character.name.toLowerCase().includes(searchText.toLowerCase()) || character.status.toLowerCase().includes(searchText.toLowerCase())
     );
+
 
 
     return (
@@ -69,10 +72,11 @@ function App() {
                 <p>Search for characters</p>
                 <button onClick={getCharacters}>Fetch Characters</button>
                 <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
-
-
+                <Link to={"/episodes"}>Link to Episodes Gallery</Link>
             <Routes>
                 <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/> }/>
+                <Route path={"/episodes"} element={<EpisodesGallery episodes={episodes}/>}/>
+                <Route path={"/episodes/:id"} element={<EpisodesGallery episodes={episodes}/>}/>
                 <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
                 {/*<Route path={"/"} element={<SearchCharacter searchText={handleSearchText} searchValue={searchText} />}/>*/}
             </Routes>
@@ -94,7 +98,6 @@ function App() {
                 </div>*/}
             </div>
             <footer><p>By Ana</p></footer>
-
 
         </div>
     );
