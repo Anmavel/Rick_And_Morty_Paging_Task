@@ -5,7 +5,7 @@ type InputUserProps={
     setText(text:string):void
 }
 
-export default function InoutUser(props:InputUserProps){
+export default function InputUser(props:InputUserProps){
 
     function handleInput(event:ChangeEvent<HTMLInputElement>){
         console.log(event.target.value);

@@ -10,7 +10,7 @@ type CharacterGalleryProps={
 
 export default function CharacterGallery(props:CharacterGalleryProps){
 
-    const fancyCard:ReactElement[]=props.characters.map((character)=> { return <CharacterCard character={character}/>})
+    const fancyCard:ReactElement[]=props.characters.map((character)=> { return <CharacterCard key={character.id} character={character}/>})
 
     return <div className={"character-gallery"}>{fancyCard}</div>
 

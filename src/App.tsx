@@ -9,6 +9,8 @@ import {Character} from "./model/CharacterType";
 import search from "./components/search";
 import axios from "axios";
 import SearchCharacter from "./components/SearchCharacter";
+import {Route, Routes} from "react-router-dom";
+import CharacterCardDetails from "./components/CharacterCardDetails";
 
 
 
@@ -24,14 +26,17 @@ function App() {
         {/*function handleText(text:string){setText(text)}
         const searchedCharacter=search(characters,text)
         */}
+    const [pageNumber, setPageNumber] = useState<number>(1);
 
   function getCharacters(){
-    axios.get("https://rickandmortyapi.com/api/character")
+    axios.get("https://rickandmortyapi.com/api/character?page=" + pageNumber)
         .then ((response)=>{console.log(response)
         setCharacters(response.data.results);
         })
         .catch((error)=> { console.error(error)}
-        )}
+        )
+      setPageNumber(pageNumber+1)
+    }
 
     useEffect(()=>{getCharacters()},[])
 
@@ -53,7 +58,6 @@ function App() {
     );
 
 
-
     return (
         <div className="App">
             <header className="App-header">
@@ -61,20 +65,25 @@ function App() {
                 <h1>{tittle}</h1>
             </header>
 
+            <div>
+                <p>Search for characters</p>
+                <button onClick={getCharacters}>Fetch Characters</button>
+                <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
+
+
+            <Routes>
+                <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/> }/>
+                <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
+                {/*<Route path={"/"} element={<SearchCharacter searchText={handleSearchText} searchValue={searchText} />}/>*/}
+            </Routes>
+                <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
+            </div>
+
                     {/*
                     <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
                     <p>Search for Character Card:</p>
                     <p><InputUser setText={handleText}/></p>
                     */}
-
-            <div>
-                <p>Search for characters</p>
-                <button onClick={getCharacters}>Fetch Characters</button>
-                <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
-                {<CharacterGallery characters={filteredCharacters}/>}
-            </div>
-
-
 
             <div>
                 {/*<p>{<CharacterGallery characters={searchedCharacter}/>}</p>*/}
@@ -84,9 +93,6 @@ function App() {
                     {<CharacterGallery characters={characters}/>}
                 </div>*/}
             </div>
-
-
-
             <footer><p>By Ana</p></footer>
 
 
@@ -94,7 +100,5 @@ function App() {
     );
 
 }
-
-
 
 export default App;
