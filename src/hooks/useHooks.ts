@@ -46,5 +46,5 @@ export default function useHooks() {
         getEpisodes()
     }, [])
 
-    return {characters, searchText, episodes, getCharacters, getEpisodes, handleSearchText, filteredCharacters}
+    return {characters, searchText, episodes, getCharacters, handleSearchText, filteredCharacters}
 }
