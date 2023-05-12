@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import CharacterGallery from "./components/CharacterGallery";
 import SearchCharacter from "./components/SearchCharacter";
-import {Route, Routes, Link} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import CharacterCardDetails from "./components/CharacterCardDetails";
 import EpisodesGallery from "./components/EpisodesGallery";
 import useHooks from "./hooks/useHooks";
+import Navigation from "./components/Navigation";
 
 
 
@@ -19,17 +20,16 @@ function App() {
                 <img className={"App-logo"} src="/rick-and-morty-31042.png"  alt={"logo"}/>
                 <h1>{tittle}</h1>
             </header>
-
+            <Navigation/>
             <div>
                 <p>Search for characters</p>
                 <button onClick={getCharacters}>Fetch Characters</button>
                 <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
-                <Link to={"/episodes"}>Link to Episodes Gallery</Link>
             <Routes>
+                <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
                 <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/> }/>
                 <Route path={"/episodes"} element={<EpisodesGallery episodes={episodes}/>}/>
                 <Route path={"/episodes/:id"} element={<EpisodesGallery episodes={episodes}/>}/>
-                <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
             </Routes>
                 <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
             </div>
