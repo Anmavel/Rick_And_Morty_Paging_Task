@@ -1,10 +1,10 @@
 import React, {} from "react";
 import "../css_components/EpisodeCard.css"
-import {EpisodeType} from "../model/EpisodeType";
+import {Episode} from "../model/Episode";
 import {Link, useParams} from "react-router-dom";
 
 type EpisodeCardProp = {
-    episode: EpisodeType,
+    episode: Episode,
 }
 
 function EpisodeCard(props:EpisodeCardProp){

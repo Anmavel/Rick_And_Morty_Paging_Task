@@ -12,7 +12,7 @@ import Navigation from "./components/Navigation";
 
 function App() {
   const tittle:string = "Rick & Morty Gallery App"
-    const {characters, searchText, episodes, getCharacters, handleSearchText, filteredCharacters}=useHooks();
+    const {characters,getNextCharacters, getPrevCharacters, searchText, episodes,  handleSearchText, filteredCharacters}=useHooks();
 
     return (
         <div className="App">
@@ -23,7 +23,8 @@ function App() {
             <Navigation/>
             <div>
                 <p>Search for characters</p>
-                <button onClick={getCharacters}>Fetch Characters</button>
+                <button onClick={getPrevCharacters}>Prev</button>
+                <button onClick={getNextCharacters}>Next</button>
                 <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
             <Routes>
                 <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
