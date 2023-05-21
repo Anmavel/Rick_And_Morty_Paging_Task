@@ -11,8 +11,9 @@
 
 }
 .card img{
-    width: 50%;
     border-radius: 50%;
+    height: 130px;
+    width: 124px;
 }
 .card p{
     text-align: center;
