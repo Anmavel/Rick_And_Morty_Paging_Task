@@ -1,7 +1,7 @@
 import React, {} from "react";
 import "../css_components/EpisodeCard.css"
 import {Episode} from "../model/Episode";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 type EpisodeCardProp = {
     episode: Episode,
@@ -10,10 +10,6 @@ type EpisodeCardProp = {
 function EpisodeCard(props:EpisodeCardProp){
 
     const charactersIdsInTheGivenEpisode = props.episode.characters.map(character => character.split("/").slice(-1))
-
-    const params = useParams()
-    const id:number|undefined = Number(params.id)
-
 
 
     return (

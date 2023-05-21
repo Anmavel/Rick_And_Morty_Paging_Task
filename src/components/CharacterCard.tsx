@@ -19,9 +19,9 @@ export default function CharacterCard(props:CharacterProp){
             <>
                 <div className={"card"}>
                     <h3>{props.character.name}</h3>
-                    <img src={props.character.image} height="130" width="124" alt={"image"}/>
+                    <img src={props.character.image} alt={"character"}/>
                     <p>Id:{props.character.id}  Status: {props.character.status}</p>
-                    <p>Origin:{props.character.origin.name}</p>
+                    <p>Origin:{" "+props.character.origin.name}</p>
                     <ul>
                         {props.character.episode.map(episode => <li key={episode} >
                             <Link to={"../episodes/" + episode.split("/").slice(-1)} >
