@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import CharacterGallery from "./components/CharacterGallery";
 import SearchCharacter from "./components/SearchCharacter";
 import {Route, Routes, useLocation} from "react-router-dom";
 import CharacterCardDetails from "./components/CharacterCardDetails";
 import EpisodesGallery from "./components/EpisodesGallery";
-import useHooksForCharacters from "./hooks/useHooksForCharacters";
+import useRickAndMortyData from "./hooks/useRickAndMortyData";
 import Navigation from "./components/Navigation";
-
+import {useSearchFilter} from "./hooks/useSearchFilter";
+import {Character} from "./model/Character";
 
 
 function App() {
@@ -19,13 +20,11 @@ function App() {
         getPrevCharacters,
         getNextEpisodes,
         getPrevEpisodes,
-        searchText,
-        handleSearchText,
-        filteredCharacters
-    } = useHooksForCharacters();
+    } = useRickAndMortyData();
+    let searchText: string, handleSearchText: (searchText: string) => void, filteredCharacters: Character[];
+    ({searchText, handleSearchText, filteredCharacters} = useSearchFilter(characters));
     const location = useLocation();
-    const [isCharacterGallery] = useState<boolean>(location.pathname === "/");
-
+    const [isCharacterGallery, setIsCharacterGallery] = useState<boolean>(false);
     const handlePrevButtonClick = () => {
         if (isCharacterGallery) {
             getPrevCharacters();
@@ -41,6 +40,13 @@ function App() {
             getNextEpisodes();
         }
     };
+    useEffect(() => {
+        if (location.pathname === "/") {
+            setIsCharacterGallery(true)
+        } else {
+            setIsCharacterGallery(false)
+        }
+    }, [location])
 
     return (
         <div className="App">
@@ -52,10 +58,11 @@ function App() {
             <div className={"gallery-button"}>
                 <button onClick={handlePrevButtonClick}>Prev</button>
                 <button onClick={handleNextButtonClick}>Next</button>
-
             </div>
+
             <div>
-                <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
+                <SearchCharacter searchText={handleSearchText} searchValue={searchText}
+                                 isCharacterGallery={isCharacterGallery}/>
                 <Routes>
                     <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
                     <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/>}/>
@@ -67,7 +74,8 @@ function App() {
             <footer><p>By Ana</p></footer>
 
         </div>
-    );
+    )
+        ;
 
 }
 
