@@ -2,62 +2,16 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
-.App-logo .img {
-  height: 230px;
-  width: 224px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 0s linear;
-  }
-}
-
-.App-header {
-  background-color: darkolivegreen;
-  min-height: 50vh;
-  display: flex;
-  font-style:italic;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: Lobster;
-}
-
 .App-link {
   color: #61dafb;
 }
 
 h1,h3{
-  font-family: Lobster;
+  font-family: Lobster,serif;
   font-style:italic;
-  font-color:darkgreen;
+  color:darkgreen;
 }
 
 button{
   background-color: darkseagreen;
-}
-
-footer{
-  font-family: Lobster;
-  font-style:italic;
-  color:white;
-  background-color: darkolivegreen;
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -33,13 +33,13 @@ export default function CharacterCardDetails(props: CharacterCardDetailsProps) {
     return (
         <>
             <div className={"character-details"}>
-                <div className={"card"}>
+                <div className={"character-card"}>
                     <h5>{foundCharacter?.name}</h5>
                     <img src={foundCharacter?.image} alt={"character"}/>
                     <p>Id:{foundCharacter?.id} Status: {foundCharacter?.status}</p>
                     <p>Origin:{" "+foundCharacter?.origin.name}</p>
                     <p>{foundCharacter?.species}</p>
-                    <Link to={"/"}>Back To Home</Link>
+                    <Link to={"/characters"}>Back To Gallery</Link>
                 </div>
             </div>
         </>

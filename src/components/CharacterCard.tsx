@@ -17,7 +17,7 @@ export default function CharacterCard(props:CharacterProp){
 
     return (
             <>
-                <div className={"card"}>
+                <div className={"character-card"}>
                     <h3>{props.character.name}</h3>
                     <img src={props.character.image} alt={"character"}/>
                     <p>Id:{props.character.id}  Status: {props.character.status}</p>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
 import CharacterGallery from "./components/CharacterGallery";
 import SearchCharacter from "./components/SearchCharacter";
@@ -9,6 +9,10 @@ import useRickAndMortyData from "./hooks/useRickAndMortyData";
 import Navigation from "./components/Navigation";
 import {useSearchFilter} from "./hooks/useSearchFilter";
 import {Character} from "./model/Character";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
+import Contact from "./components/Contact";
+import Header from "./components/Header";
 
 
 function App() {
@@ -24,54 +28,47 @@ function App() {
     let searchText: string, handleSearchText: (searchText: string) => void, filteredCharacters: Character[];
     ({searchText, handleSearchText, filteredCharacters} = useSearchFilter(characters));
     const location = useLocation();
-    const [isCharacterGallery, setIsCharacterGallery] = useState<boolean>(false);
     const handlePrevButtonClick = () => {
-        if (isCharacterGallery) {
+        if (location.pathname === "/characters") {
             getPrevCharacters();
-        } else {
+        } else if (location.pathname === "/episodes") {
             getPrevEpisodes();
         }
     };
 
     const handleNextButtonClick = () => {
-        if (isCharacterGallery) {
+        if (location.pathname === "/characters") {
             getNextCharacters();
-        } else {
+        } else if (location.pathname === "/episodes") {
             getNextEpisodes();
         }
     };
-    useEffect(() => {
-        if (location.pathname === "/") {
-            setIsCharacterGallery(true)
-        } else {
-            setIsCharacterGallery(false)
-        }
-    }, [location])
+
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img className={"App-logo"} src="/rick-and-morty-31042.png" alt={"logo"}/>
-                <h1>{tittle}</h1>
-            </header>
+            <Header tittle={tittle}/>
             <Navigation/>
-            <div className={"gallery-button"}>
-                <button onClick={handlePrevButtonClick}>Prev</button>
-                <button onClick={handleNextButtonClick}>Next</button>
-            </div>
+            {location.pathname === "/characters" || location.pathname === "/episodes" ? (
+                <div className="gallery-button">
+                    <button onClick={handlePrevButtonClick}>Prev</button>
+                    <button onClick={handleNextButtonClick}>Next</button>
+                </div>
+            ) : <></>}
 
             <div>
-                <SearchCharacter searchText={handleSearchText} searchValue={searchText}
-                                 isCharacterGallery={isCharacterGallery}/>
+                <SearchCharacter searchText={handleSearchText} searchValue={searchText}/>
                 <Routes>
-                    <Route path={"/"} element={<CharacterGallery characters={filteredCharacters}/>}/>
+                    <Route path={"/"} element={<Home/>}/>
+                    <Route path={"/characters"} element={<CharacterGallery characters={filteredCharacters}/>}/>
                     <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/>}/>
                     <Route path={"/episodes"} element={<EpisodesGallery episodes={episodes}/>}/>
                     <Route path={"/episodes/:id"} element={<EpisodesGallery episodes={episodes}/>}/>
+                    <Route path={"/contact"} element={<Contact/>}/>
                 </Routes>
                 <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
             </div>
-            <footer><p>By Ana</p></footer>
+            <Footer/>
 
         </div>
     )
