@@ -4,10 +4,10 @@ import {Episode} from "../model/Episode";
 import {Link} from "react-router-dom";
 
 type EpisodeCardProp = {
-    episode: Episode,
+    episode: Episode
 }
 
-function EpisodeCard(props:EpisodeCardProp){
+function EpisodeCard(props: EpisodeCardProp) {
 
     const charactersIdsInTheGivenEpisode = props.episode.characters.map(character => character.split("/").slice(-1))
 

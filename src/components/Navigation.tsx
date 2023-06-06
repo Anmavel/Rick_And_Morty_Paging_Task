@@ -11,9 +11,9 @@ export default function Navigation() {
 
             <ul className="menu__box">
                 <li><NavLink to="/" className="menu__item">Home</NavLink></li>
-                <li><NavLink to="/" className="menu__item">Characters Gallery</NavLink></li>
+                <li><NavLink to="/characters" className="menu__item">Characters Gallery</NavLink></li>
                 <li><NavLink to="/episodes" className="menu__item">Episodes Gallery</NavLink></li>
-                <li><NavLink to="/" className="menu__item">Contact</NavLink></li>
+                <li><NavLink to="/contact" className="menu__item">Contact</NavLink></li>
             </ul>
         </div>
 

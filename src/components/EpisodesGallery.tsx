@@ -10,11 +10,11 @@ type EpisodesGalleryProps = {
     episodes:Episode[]
 }
 
-function EpisodesGallery(props:EpisodesGalleryProps){
+export default function EpisodesGallery(props:EpisodesGalleryProps){
     const params = useParams()
     const id:number|undefined = Number(params.id)
     const thereIsAParam = !!id
-    const resultToMap = !!thereIsAParam ? props.episodes.filter(e => e.id === id): props.episodes
+    const resultToMap = thereIsAParam ? props.episodes.filter(e => e.id === id): props.episodes
     const fancyCard:ReactElement[] = resultToMap.map((episode) => <EpisodeCard key={episode.id} episode={episode}/>)
 
     return (
@@ -24,5 +24,3 @@ function EpisodesGallery(props:EpisodesGalleryProps){
     )
 
 }
-
-export default EpisodesGallery

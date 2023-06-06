@@ -1,4 +1,4 @@
-.card{
+.character-card{
     width: 200px;
     height: auto;
     border-style: solid;
@@ -10,12 +10,12 @@
     box-shadow: 1px 2px 8px #666;
 
 }
-.card img{
+.character-card img{
     border-radius: 50%;
     height: 130px;
     width: 124px;
 }
-.card p{
+.character-card p{
     text-align: center;
     font-size: medium;
     color:black;
