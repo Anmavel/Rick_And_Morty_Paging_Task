@@ -9,3 +9,9 @@
     height: 260px;
     width: 248px;
 }
+
+.github-card h3{
+    font-style: italic;
+    font-weight: normal;
+    color:black;
+}

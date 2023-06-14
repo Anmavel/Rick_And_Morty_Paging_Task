@@ -1,6 +1,7 @@
 .episode-card{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 300px;
     height: auto;
     border-style: solid;
@@ -18,4 +19,10 @@
     display: flex;
     flex-direction: column;
 
+}
+.episode-card h3{
+    color: darkslategrey;
+}
+.episode-card button{
+    width: 100px;
 }
