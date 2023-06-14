@@ -5,6 +5,7 @@ import SearchCharacter from "./components/SearchCharacter";
 import {Route, Routes, useLocation} from "react-router-dom";
 import CharacterCardDetails from "./components/CharacterCardDetails";
 import EpisodesGallery from "./components/EpisodesGallery";
+import EpisodeCardDetails from "./components/EpisodeCardDetails"
 import useRickAndMortyData from "./hooks/useRickAndMortyData";
 import Navigation from "./components/Navigation";
 import {useSearchFilter} from "./hooks/useSearchFilter";
@@ -63,10 +64,9 @@ function App() {
                     <Route path={"/characters"} element={<CharacterGallery characters={filteredCharacters}/>}/>
                     <Route path={"/characters/:id"} element={<CharacterCardDetails characters={characters}/>}/>
                     <Route path={"/episodes"} element={<EpisodesGallery episodes={episodes}/>}/>
-                    <Route path={"/episodes/:id"} element={<EpisodesGallery episodes={episodes}/>}/>
+                    <Route path={"/episodes/:id"} element={<EpisodeCardDetails episodes={episodes}/>}/>
                     <Route path={"/contact"} element={<Contact/>}/>
                 </Routes>
-                <a href="https://www.freepnglogos.com/pics/rick-and-morty">Rick And Morty from freepnglogos.com</a>
             </div>
             <Footer/>
 

@@ -1,34 +1,48 @@
 import React, {} from "react";
 import "../css_components/EpisodeCard.css"
+import "../css_components/EpisodeCardDetails.css"
 import {Episode} from "../model/Episode";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 type EpisodeCardProp = {
-    episode: Episode
+    episodes: Episode[]
 }
 
-function EpisodeCard(props: EpisodeCardProp) {
+export default function EpisodeCard(props: EpisodeCardProp) {
+    const params = useParams()
+    const id: string | undefined = params.id;
+    if (!id) {
+        return <div>ID is undefined</div>
+    }
 
-    const charactersIdsInTheGivenEpisode = props.episode.characters.map(character => character.split("/").slice(-1))
+    const foundEpisode: Episode | undefined = props.episodes.find((found) => (found.id === parseInt(id)))
+    console.log(id)
+    if (!foundEpisode) {
+        return <div className={"episode-details"}>
+            <div>
+                <p>Episode not fetched yet</p>
+                <Link to={"/episodes"}>Back To Episodes</Link>
+            </div>
+        </div>;
+    }
 
 
     return (
-        <div className={"episode-card"}>
-            <h3>{props.episode.name}</h3>
-            <p>Id:{props.episode.id}  AirDate: {props.episode.air_date}</p>
-            <a href={props.episode.episode}>{props.episode.name}</a>
-            <p>Characters in episode:</p>
-            <ul>
-                {charactersIdsInTheGivenEpisode.map(characterId => <li>
-                    <Link to={"../characters/" + characterId}>
-                        Character No. {characterId}
-                    </Link>
-                </li>)}
-            </ul>
-
+        <div className={"episode-details"}>
+            <div className={"episode-card"}>
+                <h3>{foundEpisode.name}</h3>
+                <p>Id:{foundEpisode.id} AirDate: {foundEpisode.air_date}</p>
+                <h3>{foundEpisode.episode}</h3>
+                <p>Characters in episode:</p>
+                <ul>
+                    {foundEpisode.characters.map(character => <li key={character}>
+                        <Link to={"../characters/" + character.split("/").slice(-1)}>
+                            {"Characters: "+ character.split("/").slice(-1)+" "}
+                        </Link>
+                    </li>)}
+                </ul>
+                <Link to={"/episodes"}>Back To Episodes</Link>
+            </div>
         </div>
     )
 }
-
-
-export default EpisodeCard
